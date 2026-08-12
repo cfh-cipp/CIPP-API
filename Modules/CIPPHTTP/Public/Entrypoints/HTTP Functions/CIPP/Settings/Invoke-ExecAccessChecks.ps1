@@ -105,7 +105,7 @@ function Invoke-ExecAccessChecks {
                 }
             }
 
-            if ($SkipCache -or $LastRun -lt $4HoursAgo) {
+            if (($SkipCache -or $LastRun -lt $4HoursAgo) -and -not $Request.Body.TenantId) {
                 $Message = Test-CIPPAccessTenant -Headers $Request.Headers
             }
 
